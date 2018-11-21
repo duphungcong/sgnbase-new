@@ -1,15 +1,13 @@
 import Vue from 'vue';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
+import http from './helpers/http';
 
 Vue.config.productionTip = false;
-axios.defaults.baseURL = 'http://localhost:8000';
-Vue.use(VueAxios, axios);
 
 window.Store = store;
+Vue.prototype.http = http;
 
 new Vue({
   router,

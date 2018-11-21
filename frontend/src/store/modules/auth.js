@@ -1,11 +1,12 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import authApi from '@/api/auth';
 
 const state = {
   token: null,
   endpoints: {
-    obtainToken: '/auth/obtain-token',
-    refreshToken: '/auth/refresh-token',
+    obtainToken: 'auth/obtain-token',
+    refreshToken: 'auth/refresh-token',
   },
 };
 
@@ -19,19 +20,11 @@ const mutations = {
 };
 
 const actions = {
-  obtainToken(context, credential) {
-    const payload = {
-      username: credential.username,
-      password: credential.password,
-    };
-    axios.post(state.endpoints.obtainToken, payload)
-      .then((response) => {
-        context.commit('updateToken', response.data.token);
-        console.log(response.data.token);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  obtainToken(context, newToken) {
+    context.commit('updateToken', newToken);
+  },
+  login(context, payload) {
+    console.log('login');
   },
   refreshToken(context) {
     const payload = {
