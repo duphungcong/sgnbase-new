@@ -1,13 +1,8 @@
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import authApi from '@/api/auth';
 
 const state = {
   token: null,
-  endpoints: {
-    obtainToken: 'auth/obtain-token',
-    refreshToken: 'auth/refresh-token',
-  },
 };
 
 const mutations = {
@@ -20,27 +15,29 @@ const mutations = {
 };
 
 const actions = {
-  obtainToken(context, newToken) {
-    context.commit('updateToken', newToken);
-  },
-  login(context, payload) {
-    console.log('login');
+  obtainToken(context, payload) {
+    authApi.login(payload.username, payload.password, (success, error, data) => {
+      if (success) {
+        console.log('login success');
+        context.commit('updateToken', data.token);
+      } else {
+        console.log('login error', error);
+      }
+    });
   },
   refreshToken(context) {
-    const payload = {
-      token: state.token,
-    };
-
-    axios.post(state.endpoints.refreshToken, payload)
-      .then((response) => {
-        context.commit('updateToken', response.data.token);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const { token } = context.state;
+    authApi.refreshToken(token, (success, error, data) => {
+      if (success) {
+        console.log('refresh success');
+        context.commit('updateToken', data.token);
+      } else {
+        console.log('refresh error', error);
+      }
+    });
   },
   inspectToken(context) {
-    const { token } = state;
+    const { token } = context.state;
 
     if (token) {
       const decoded = jwtDecode(token);

@@ -26,19 +26,9 @@ instance.interceptors.request.use((config) => {
   }
 
   return config;
-}, (error) => {
-  console.log(error);
-  // Do something with request error
-  return Promise.reject(error);
-});
+}, error => Promise.reject(error));
 
-instance.interceptors.response.use((response) => {
-  console.log(response);
-  return response;
-}, (error) => {
-  console.log(error.config);
-  return Promise.reject(error);
-});
+instance.interceptors.response.use(response => response, error => Promise.reject(error));
 
 export default {
   getData(action) {

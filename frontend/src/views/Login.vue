@@ -11,8 +11,6 @@
 
 <script>
 
-import authApi from '../api/auth';
-
 export default {
   name: 'Login',
   data() {
@@ -23,22 +21,13 @@ export default {
   },
   methods: {
     onLogin() {
-      this.$store.dispatch('auth/login', {
+      this.$store.dispatch('auth/obtainToken', {
         username: this.username,
         password: this.password,
       });
-      // authApi.login(this.username, this.password, (success, err, data) => {
-      //   if (err) {
-      //     console.log('login', err);
-      //   } else if (success === false) {
-      //     console.log('login', success);
-      //   } else {
-      //     console.log('login', 'success');
-      //   }
-      // });
     },
     refreshToken() {
-      authApi.refreshToken();
+      this.$store.dispatch('auth/refreshToken');
     },
   },
 };
