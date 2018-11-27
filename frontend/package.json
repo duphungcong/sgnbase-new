@@ -12,6 +12,7 @@
     "jwt-decode": "^2.2.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vuesax": "^3.8.0",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
   },
