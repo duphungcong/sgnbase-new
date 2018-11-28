@@ -15,6 +15,9 @@ const mutations = {
 };
 
 const actions = {
+  deleteToken(context) {
+    context.commit('updateToken', null);
+  },
   obtainToken(context, payload) {
     authApi.login(payload.username, payload.password, (success, error, data) => {
       if (success) {
@@ -44,20 +47,25 @@ const actions = {
       const { exp } = decoded;
       const originIssuedAt = decoded.orig_iat;
 
-      if (exp - (Date.now() / 1000) < 1800 && (Date.now() / 1000) - originIssuedAt < 628200) {
-        context.dispatch('refreshToken');
-      } else if (exp - (Date.now() / 1000) < 1800) {
-        // DO NOTHING, DO NOT REFRESH
+      if (exp > Date.now() / 1000) {
+        // A TOKEN IS STILL VALID
+        // REFRESH TOKEN IF EXPIRE TIME < 30 MINUTES AND REFRESH TIME IS STILL VALID (< 7 DAYS)
+        if (exp - (Date.now() / 1000) < 1800 && (Date.now() / 1000) - originIssuedAt < 628200) {
+          // console.log('refresh');
+          context.dispatch('refreshToken');
+        }
       } else {
         // THE CONDITION WHERE A TOKEN IS EXPIRED AS WELL
         // PROMPT USER TO RE-LOGIN
+        // console.log('expired');
+        context.commit('updateToken', null);
       }
     }
   },
 };
 
 const getters = {
-
+  loggedIn: state => state.token !== null,
 };
 
 export default {

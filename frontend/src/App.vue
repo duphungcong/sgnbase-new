@@ -13,6 +13,31 @@
   </section>
 </template>
 
+<script>
+
+export default {
+  name: 'App',
+  computed: {
+    loggedIn() {
+      return this.$store.getters['auth/loggedIn'];
+    },
+  },
+  watch: {
+    loggedIn(value) {
+      if (!value) {
+        this.$router.push({ name: 'login' });
+      } else {
+        this.$router.push({ name: 'home' });
+      }
+    },
+  },
+  mounted() {
+    this.$store.dispatch('auth/inspectToken');
+  },
+};
+
+</script>
+
 <style>
 /*#app {*/
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/

@@ -8,10 +8,16 @@ Vue.use(Vuex);
 
 const state = {
   loading: false,
+  checkId: null,
 };
 
 const mutations = {
-
+  setLoading(state, payload) {
+    state.loading = payload;
+  },
+  setCheckId(state, payload) {
+    state.checkId = payload;
+  },
 };
 
 const actions = {
@@ -19,7 +25,7 @@ const actions = {
 };
 
 const getters = {
-
+  followed: state => state.checkId !== null,
 };
 
 export default new Vuex.Store({
