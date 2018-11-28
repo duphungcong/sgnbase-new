@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <form @submit.prevent="onLogin">
-      Username: <input type="text" v-model="username"/><br/>
-      Password: <input type="password" v-model="password"/><br/>
-      <input type="submit" value="Login"/>
-    </form>
-    <button @click="refreshToken">Refresh</button>
-  </div>
+  <vs-row>
+    <!--<vs-row>-->
+      <!--<vs-input label="Username" v-model="username"></vs-input>-->
+    <!--</vs-row>-->
+    <!--<vs-row>-->
+      <!--<vs-input type="password" label="Password" v-model="password"></vs-input>-->
+    <!--</vs-row>-->
+
+    <!--<vs-button color="primary" type="border" @click="onLogin">Login</vs-button>-->
+    <!--<vs-button color="primary" type="border" @click="refreshToken">Refresh</vs-button>-->
+
+    <vs-row><vs-input label="Username" v-model="username"></vs-input></vs-row>
+    <vs-row><vs-input label="Password" type="password" v-model="password"></vs-input></vs-row>
+    <vs-row><vs-button color="primary" type="border" @click="onLogin">Login</vs-button></vs-row>
+  </vs-row>
 </template>
 
 <script>
@@ -35,5 +42,7 @@ export default {
 </script>
 
 <style scoped>
-
+  vs-row {
+    padding-bottom: 10px;
+  }
 </style>
