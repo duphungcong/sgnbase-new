@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "buefy": "^0.7.1",
     "jwt-decode": "^2.2.0",
-    "material-icons": "^0.2.3",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vuesax": "^3.8.0",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
   },

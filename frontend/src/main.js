@@ -1,14 +1,13 @@
 import Vue from 'vue';
-import Vuesax from 'vuesax';
+import Buefy from 'buefy';
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
 import http from './helpers/http';
 
-import 'vuesax/dist/vuesax.css';
-import 'material-icons/iconfont/material-icons.css';
+import 'buefy/dist/buefy.css';
 
-Vue.use(Vuesax);
+Vue.use(Buefy);
 
 Vue.config.productionTip = false;
 window.Store = store;
