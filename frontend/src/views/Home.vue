@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
+  <div class="container">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button class="button is-info" @click="logout">Logout</button>
   </div>
 </template>
 
@@ -13,11 +12,6 @@ export default {
   name: 'home',
   components: {
     HelloWorld,
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('auth/deleteToken');
-    },
   },
 };
 </script>

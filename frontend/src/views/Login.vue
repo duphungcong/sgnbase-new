@@ -1,5 +1,4 @@
 <template>
-
   <div class="container has-text-centered">
     <div class="column is-4 is-offset-4">
       <h4 class="title has-text-grey">SGNBASE</h4>

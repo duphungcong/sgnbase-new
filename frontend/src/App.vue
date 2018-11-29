@@ -1,22 +1,19 @@
 <template>
-  <!--<div id="app" class="container is-fluid">-->
-    <!--<div id="nav">-->
-      <!--<router-link to="/">Home</router-link> |-->
-      <!--<router-link to="/login">Login</router-link>-->
-    <!--</div>-->
-    <!--<router-view/>-->
-  <!--</div>-->
-  <section class="section">
-    <div class="container is-fluid">
+  <div class="container">
+    <nav-bar v-if="loggedIn"></nav-bar>
+    <div class="container">
       <router-view></router-view>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 
+import NavBar from '@/components/NavBar.vue';
+
 export default {
   name: 'App',
+  components: { NavBar },
   computed: {
     loggedIn() {
       return this.$store.getters['auth/loggedIn'];
