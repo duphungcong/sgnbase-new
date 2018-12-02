@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -23,23 +24,9 @@ class Aircraft(models.Model):
         return self.register
 
 
-class Task(models.Model):
-    number = models.CharField(max_length=20)
-    zone = models.CharField(max_length=10)
-    code = models.CharField(max_length=3)
-    title = models.CharField
-    ams_mh = models.FloatField
-    actual_mh = models.FloatField
-    men = models.IntegerField
-    hour = models.FloatField
-
-    def __str__(self):
-        return self.number
-
-
 class Area(models.Model):
     name = models.CharField(max_length=10)
-    main_area = models.ForeignKey('self', null=True, related_name='area', on_delete=models.CASCADE)
+    main_area = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='areas')
 
     def __str__(self):
         return self.name
@@ -70,5 +57,31 @@ class Spare(models.Model):
         return self.pn
 
 
+class Task(models.Model):
+    number = models.CharField(max_length=20)
+    zone = models.CharField(max_length=10)
+    code = models.CharField(max_length=3)
+    title = models.CharField(max_length=200)
+    ams_mh = models.FloatField
+    actual_mh = models.FloatField
+    men = models.IntegerField
+    hour = models.FloatField
+
+    areas = models.ManyToManyField(Area)
+    tools = models.ManyToManyField(Tool)
+    spare = models.ManyToManyField(Spare)
+
+    def __str__(self):
+        return self.number
+
+    class Meta:
+        ordering = ('number',)
+
+
 class Note(models.Model):
-    content = models.CharField
+    content = models.TextField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content
