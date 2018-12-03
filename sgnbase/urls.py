@@ -22,10 +22,11 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
 
-from ams import views
+import ams.views, work.views
 
 router = routers.DefaultRouter()
-router.register(r'aircrafts', views.AircraftViewSet)
+router.register(r'aircraft', ams.views.AircraftViewSet)
+router.register(r'checks', work.views.CheckViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
