@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'ams.apps.AmsConfig',
-    'checks.apps.ChecksConfig',
+    'work.apps.WorkConfig',
 ]
 
 MIDDLEWARE = [
