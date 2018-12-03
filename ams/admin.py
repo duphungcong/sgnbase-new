@@ -1,10 +1,9 @@
 from django.contrib import admin
-from django import forms
-from .models import Aircraft, Area, Note, Task
+from .models import Aircraft, Area, Note, Task, Tool, Spare
 
 
 class AreaAdmin(admin.ModelAdmin):
-    list_display = ('name', 'main_area')
+    list_display = ('__str__', 'main_area')
     ordering = ('main_area',)
 
 
@@ -22,3 +21,5 @@ admin.site.register(Aircraft)
 admin.site.register(Area, AreaAdmin)
 admin.site.register(Note, NoteAdmin)
 admin.site.register(Task)
+admin.site.register(Tool)
+admin.site.register(Spare)

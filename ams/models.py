@@ -29,11 +29,14 @@ class Area(models.Model):
     main_area = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='areas')
 
     def __str__(self):
-        return self.name
+        if self.main_area is None:
+            return self.name
+        else:
+            return '%s %s' % (self.main_area, self.name)
 
 
 class Tool(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     pn = models.CharField(max_length=20)
 
     def __str__(self):
