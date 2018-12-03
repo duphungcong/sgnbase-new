@@ -1,9 +1,6 @@
 <template>
-  <div class="container">
-    <nav-bar v-if="loggedIn"></nav-bar>
-    <div class="container">
-      <router-view></router-view>
-    </div>
+  <div class="container is-fluid">
+    <nav-bar></nav-bar>
   </div>
 </template>
 

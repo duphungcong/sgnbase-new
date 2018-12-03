@@ -16,8 +16,8 @@
 
     <div class="navbar-menu" v-bind:class="{ 'is-active': activator }">
       <div class="navbar-start">
-        <a class="navbar-item">
-          Home
+        <a class="navbar-item" href="/">
+          Checks
         </a>
 
         <a class="navbar-item">
@@ -83,7 +83,7 @@ export default {
     },
     activeMenu() {
       this.activator = !this.activator;
-    }
+    },
   },
 };
 
