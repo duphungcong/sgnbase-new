@@ -19,7 +19,7 @@ instance.interceptors.request.use((config) => {
   console.log('token in request', token);
 
   if (token) {
-    config.headers.common.Authorization = `JWT${token}`;
+    config.headers.common.Authorization = `JWT ${token}`; // One SPACE between JWT and token
     // config.headers.common['Access-Control-Allow-Origin'] = '*';
   } else {
     config.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';

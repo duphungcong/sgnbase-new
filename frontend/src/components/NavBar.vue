@@ -90,5 +90,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .navbar {
+    padding-bottom: 1em;
+  }
 </style>

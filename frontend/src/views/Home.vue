@@ -1,64 +1,65 @@
 <template>
   <div>
-    <b-table :data="data" :columns="columns"></b-table>
+    <b-table :data="checks" :columns="columns"
+             :loading="loading"
+             paginated
+             backend-pagination
+             :total="total"
+             :per-page="perPage"
+             @page-change="onPageChange"></b-table>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
+import { mapState } from 'vuex';
 
 export default {
   name: 'home',
   data() {
     return {
-      data: [
-        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' },
-        { 'id': 6, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 7, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 8, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 9, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 10, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' },
-        { 'id': 11, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 12, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 13, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 14, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 15, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' },
-        { 'id': 16, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 17, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 18, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 19, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 20, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
-      ],
+      total: 0,
+      loading: false,
+      sortField: 'start_date',
+      sortOrder: 'desc',
+      defaultSortOrder: 'desc',
+      page: 1,
+      perPage: 20,
       columns: [
         {
-            field: 'id',
-            label: 'ID',
-            width: '40',
-            numeric: true
+          field: 'aircraft.register',
+          label: 'Aircraft',
+          width: '100',
         },
         {
-            field: 'first_name',
-            label: 'First Name',
+          field: 'name',
+          label: 'Name',
+          width: '400',
         },
         {
-            field: 'last_name',
-            label: 'Last Name',
+          field: 'start_date',
+          label: 'Start Date',
+          width: '200',
         },
         {
-            field: 'date',
-            label: 'Date',
-            centered: true
+          field: 'finish_date',
+          label: 'Finish Date',
+          width: '200',
         },
         {
-            field: 'gender',
-            label: 'Gender',
-        }
+          field: 'action',
+          label: 'Action',
+          centered: true,
+        },
       ],
-    }
-  }
+    };
+  },
+  computed: {
+    ...mapState('work', ['checks']),
+  },
+  created() {
+    this.$store.dispatch('work/getChecks', {
+    });
+  },
 };
 </script>
