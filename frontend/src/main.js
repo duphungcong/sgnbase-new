@@ -7,7 +7,9 @@ import http from './helpers/http';
 
 import 'buefy/dist/buefy.css';
 
-Vue.use(Buefy);
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+});
 
 Vue.config.productionTip = false;
 window.Store = store;

@@ -1,12 +1,14 @@
 <template>
   <div>
-    <b-table :data="checks" :columns="columns"
-             :loading="loading"
-             paginated
-             backend-pagination
-             :total="total"
-             :per-page="perPage"
-             @page-change="onPageChange"></b-table>
+    <b-table
+      :data="checks"
+      :columns="columns"
+      :loading="loading"
+      paginated
+      backend-pagination
+      :total="count"
+      :per-page="perPage"
+      @page-change="onPageChange"></b-table>
   </div>
 </template>
 
@@ -18,13 +20,12 @@ export default {
   name: 'home',
   data() {
     return {
-      total: 0,
       loading: false,
       sortField: 'start_date',
       sortOrder: 'desc',
       defaultSortOrder: 'desc',
       page: 1,
-      perPage: 20,
+      perPage: 5,
       columns: [
         {
           field: 'aircraft.register',
@@ -55,11 +56,21 @@ export default {
     };
   },
   computed: {
-    ...mapState('work', ['checks']),
+    ...mapState('work', ['checks', 'count']),
+  },
+  methods: {
+    onPageChange(page) {
+      this.page = page;
+      this.getChecks();
+    },
+    getChecks() {
+      this.$store.dispatch('work/getChecks', {
+        page: this.page,
+    });
+    },
   },
   created() {
-    this.$store.dispatch('work/getChecks', {
-    });
+    this.getChecks();
   },
 };
 </script>

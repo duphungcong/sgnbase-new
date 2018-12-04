@@ -31,10 +31,10 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(response => response, error => Promise.reject(error));
 
 export default {
-  getData(action) {
+  getData(action, config) {
     let url = `${BASE_URL}`;
     url += action;
-    return instance.get(url);
+    return instance.get(url, config);
   },
   postData(action, data) {
     let url = `${BASE_URL}`;
