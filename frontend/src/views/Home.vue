@@ -1,15 +1,19 @@
 <template>
-  <div>
+  <div class="column">
+    <div class="action">
+      <button class="button is-primary new" @click="newCheck">New Check</button>
+    </div>
+
     <b-table
       :data="checks"
       :columns="columns"
       :loading="loading"
       paginated
       backend-pagination
-      :total="count"
+      :total="numberOfChecks"
       :per-page="perPage"
       @page-change="onPageChange"></b-table>
-  </div>
+</div>
 </template>
 
 <script>
@@ -56,7 +60,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('work', ['checks', 'count']),
+    ...mapState('work', ['checks', 'numberOfChecks']),
   },
   methods: {
     onPageChange(page) {
@@ -66,11 +70,21 @@ export default {
     getChecks() {
       this.$store.dispatch('work/getChecks', {
         page: this.page,
-    });
+      });
+    },
+    newCheck() {
+      this.$router.push('/check');
     },
   },
   created() {
+    console.log('load home page');
     this.getChecks();
   },
 };
 </script>
+
+<style scoped>
+  .action {
+    margin-bottom: 0.5em;
+  }
+</style>

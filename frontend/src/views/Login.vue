@@ -63,7 +63,4 @@ export default {
 </script>
 
 <style scoped>
-  vs-row {
-    padding-bottom: 10px;
-  }
 </style>

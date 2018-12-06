@@ -40,5 +40,11 @@ export default new Router({
       component: () => import('./views/Login.vue'),
       beforeEnter: guest,
     },
+    {
+      path: '/check',
+      name: 'check',
+      component: () => import('./views/Check.vue'),
+      beforeEnter: staff,
+    },
   ],
 });

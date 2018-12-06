@@ -5,6 +5,8 @@ from ams.serializers import AircraftSerializer
 
 class CheckSerializer(serializers.HyperlinkedModelSerializer):
     aircraft = AircraftSerializer(read_only=True)
+
     class Meta:
         model = Check
         fields = ('name', 'aircraft', 'start_date', 'finish_date')
+        read_only_fields = ('created', 'updated')

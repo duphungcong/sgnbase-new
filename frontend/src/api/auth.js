@@ -19,10 +19,10 @@ export default {
       });
   },
   refreshToken(token, cb) {
-    const data = {
+    const payload = {
       token,
     };
-    http.postData(endpoints.refreshToken, data)
+    http.postData(endpoints.refreshToken, payload)
       .then((res) => {
         cb(true, null, res.data);
       }, (err) => {
