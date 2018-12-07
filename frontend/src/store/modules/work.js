@@ -19,8 +19,8 @@ const mutations = {
 };
 
 const actions = {
-  getChecks(context, page) {
-    workApi.getChecks(page, (success, error, data) => {
+  getChecks(context, payload) {
+    workApi.getChecks(payload, (success, error, data) => {
       if (success) {
         context.commit('setChecks', data.results);
         context.commit('setNumberOfChecks', data.count);
@@ -38,8 +38,8 @@ const actions = {
       }
     });
   },
-  createCheck(context, check) {
-    workApi.createCheck(check, (success, error, data) => {
+  createCheck(context, payload) {
+    workApi.createCheck(payload, (success, error, data) => {
       if (success) {
         console.log('create new check', data);
       } else {

@@ -19,7 +19,7 @@ const actions = {
     context.commit('updateToken', null);
   },
   obtainToken(context, payload) {
-    authApi.login(payload.username, payload.password, (success, error, data) => {
+    authApi.login(payload, (success, error, data) => {
       if (success) {
         console.log('login success');
         context.commit('updateToken', data.token);
@@ -30,7 +30,8 @@ const actions = {
   },
   refreshToken(context) {
     const { token } = context.state;
-    authApi.refreshToken(token, (success, error, data) => {
+    const payload = token;
+    authApi.refreshToken(payload, (success, error, data) => {
       if (success) {
         console.log('refresh success');
         context.commit('updateToken', data.token);

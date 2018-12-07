@@ -2,17 +2,25 @@ import http from '@/helpers/http';
 
 const endpoints = {
   getChecks: 'checks/',
-  getCheck: 'checks/:id/',
+  // method: GET
+  // params:
+  // page (string)
   getAircraftList: 'aircraft/',
+  // method: GET
+  // params: {}
   createCheck: 'checks/',
+  // method: POST
+  // body:
+  // name (string)
+  // start_date (string)
+  // finish_date (string)
+  // aircraft (Aircraft.object)
 };
 
 export default {
-  getChecks(page, cb) {
+  getChecks(payload, cb) {
     http.getData(endpoints.getChecks, {
-      params: {
-        page,
-      },
+      params: payload,
     })
       .then((res) => {
         console.log('res', res.data);
@@ -30,8 +38,7 @@ export default {
         cb(false, err.response.data, null);
       });
   },
-  createCheck(check, cb) {
-    const payload = check;
+  createCheck(payload, cb) {
     console.log('create check - payload', payload);
     http.postData(endpoints.createCheck, payload)
       .then((res) => {
