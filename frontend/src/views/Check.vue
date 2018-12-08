@@ -12,11 +12,14 @@
       <div class="control">
           <b-datepicker
             placeholder="Select date"
-            icon="calendar-alt">
+            icon="calendar-alt"
+            v-model="start.date">
           </b-datepicker>
           <b-timepicker
             placeholder="Select time"
-            icon="clock">
+            icon="clock"
+            v-model="start.time"
+            :time-formatter="formatter">
           </b-timepicker>
       </div>
     </div>
@@ -30,7 +33,8 @@
           </b-datepicker>
           <b-timepicker
             placeholder="Select time"
-            icon="clock">
+            icon="clock"
+            v-model="finish.time">
           </b-timepicker>
       </div>
     </div>
@@ -66,9 +70,17 @@ export default {
   name: 'Check',
   data() {
     return {
+      start: {
+        date: new Date('2018-12-04T09:02:44Z'),
+        time: new Date('2018-12-04T09:02:44Z'),
+      },
+      finish: {
+        date: null,
+        time: new Date('Jan 01 1970 20:00 GMT+0700'),
+      },
       check: {
         name: 'test',
-        start_date: '2018-12-04T09:02:44Z',
+        start_date: '',
         finish_date: '2018-12-04T09:02:44Z',
         aircraft: null,
       },
@@ -76,6 +88,9 @@ export default {
   },
   computed: {
     ...mapState('work', ['aircraftList']),
+    startDate() {
+      this.start.time.getHours();
+    },
   },
   methods: {
     submit() {
@@ -88,6 +103,9 @@ export default {
     },
     getAircraftList() {
       this.$store.dispatch('work/getAircraftList');
+    },
+    formatter(d) {
+      return d.toLocaleTimeString('en-US', { timeZone: 'Asia/Tokyo'});
     },
   },
   created() {

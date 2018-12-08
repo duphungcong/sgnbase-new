@@ -30,7 +30,9 @@ const actions = {
   },
   refreshToken(context) {
     const { token } = context.state;
-    const payload = token;
+    const payload = {
+      token,
+    };
     authApi.refreshToken(payload, (success, error, data) => {
       if (success) {
         console.log('refresh success');
