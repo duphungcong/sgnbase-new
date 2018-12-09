@@ -73,7 +73,10 @@ export default {
       });
     },
     newCheck() {
-      this.$router.push('/check');
+      this.$router.push({ name: 'check', params: { id: 1 } });
+    },
+    editCheck(id) {
+      this.$router.push({ name: 'check', params: { id } });
     },
   },
   created() {

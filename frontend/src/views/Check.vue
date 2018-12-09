@@ -13,13 +13,12 @@
           <b-datepicker
             placeholder="Select date"
             icon="calendar-alt"
-            v-model="start.date">
+            v-model="check.start_date">
           </b-datepicker>
           <b-timepicker
             placeholder="Select time"
             icon="clock"
-            v-model="start.time"
-            :time-formatter="formatter">
+            v-model="check.start_date">
           </b-timepicker>
       </div>
     </div>
@@ -29,12 +28,13 @@
       <div class="control">
           <b-datepicker
             placeholder="Select date"
-            icon="calendar-alt">
+            icon="calendar-alt"
+            v-model="check.finish_date">
           </b-datepicker>
           <b-timepicker
             placeholder="Select time"
             icon="clock"
-            v-model="finish.time">
+            v-model="check.finish_date">
           </b-timepicker>
       </div>
     </div>
@@ -70,27 +70,17 @@ export default {
   name: 'Check',
   data() {
     return {
-      start: {
-        date: new Date('2018-12-04T09:02:44Z'),
-        time: new Date('2018-12-04T09:02:44Z'),
-      },
-      finish: {
-        date: null,
-        time: new Date('Jan 01 1970 20:00 GMT+0700'),
-      },
-      check: {
-        name: 'test',
-        start_date: '',
-        finish_date: '2018-12-04T09:02:44Z',
-        aircraft: null,
-      },
+      checkId: null,
+      // check: {
+      //   name: 'test',
+      //   start_date: new Date(),
+      //   finish_date: new Date(),
+      //   aircraft: null,
+      // },
     };
   },
   computed: {
-    ...mapState('work', ['aircraftList']),
-    startDate() {
-      this.start.time.getHours();
-    },
+    ...mapState('work', ['aircraftList', 'check']),
   },
   methods: {
     submit() {
@@ -104,11 +94,17 @@ export default {
     getAircraftList() {
       this.$store.dispatch('work/getAircraftList');
     },
-    formatter(d) {
-      return d.toLocaleTimeString('en-US', { timeZone: 'Asia/Tokyo'});
+    getCheck() {
+      this.$store.dispatch('work/getCheck', {
+        id: this.checkId,
+      });
     },
   },
   created() {
+    if (this.$route.params.id) {
+      this.checkId = this.$route.params.id;
+    }
+    this.getCheck();
     this.getAircraftList();
   },
 };

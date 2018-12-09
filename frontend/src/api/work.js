@@ -29,6 +29,17 @@ export default {
         cb(false, err.response.data, null);
       });
   },
+  getCheck(payload, cb) {
+    const { id } = payload;
+    const endpoint = `${endpoints.getChecks}${id}/`;
+    http.getData(endpoint, {})
+      .then((res) => {
+        console.log('res', res.data);
+        cb(true, null, res.data);
+      }, (err) => {
+        cb(false, err.response.data, null);
+      });
+  },
   getAircraftList(cb) {
     http.getData(endpoints.getAircraftList, {})
       .then((res) => {
@@ -39,7 +50,7 @@ export default {
       });
   },
   createCheck(payload, cb) {
-    console.log('create check - payload', payload);
+    // console.log('create check - payload', payload);
     http.postData(endpoints.createCheck, payload)
       .then((res) => {
         cb(true, null, res.data);
