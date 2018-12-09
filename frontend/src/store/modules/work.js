@@ -71,6 +71,7 @@ const actions = {
     workApi.createCheck(payload, (success, error, data) => {
       if (success) {
         console.log('create new check', data);
+
       } else {
         console.log('error', error);
       }

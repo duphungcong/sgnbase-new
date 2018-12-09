@@ -12,6 +12,6 @@ class CheckSetPagination(pagination.PageNumberPagination):
 
 
 class CheckViewSet(viewsets.ModelViewSet):
-    queryset = Check.objects.all().order_by('start_date')
+    queryset = Check.objects.all().order_by('-start_date')
     serializer_class = CheckSerializer
     pagination_class = CheckSetPagination
