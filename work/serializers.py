@@ -8,4 +8,4 @@ class CheckSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Check
-        fields = ('name', 'aircraft', 'start_date', 'finish_date')
+        fields = ('id', 'name', 'aircraft', 'start_date', 'finish_date')
