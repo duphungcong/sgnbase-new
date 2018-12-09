@@ -34,11 +34,18 @@ const actions = {
     });
   },
   getCheck(context, payload) {
+    let check = {
+      name: '',
+      start_date: new Date(),
+      finish_date: new Date(),
+      aircraft: null,
+    };
+    context.commit('setCheck', check);
     if (payload.id) {
-      console.log('get check - id:', payload.id);
+      // console.log('get check - id:', payload.id);
       workApi.getCheck(payload, (success, error, data) => {
         if (success) {
-          const check = {
+          check = {
             name: data.name,
             start_date: new Date(data.start_date),
             finish_date: new Date(data.finish_date),
@@ -49,14 +56,6 @@ const actions = {
           console.log('error', error);
         }
       });
-    } else {
-      const check = {
-        name: '',
-        start_date: new Date(),
-        finish_date: new Date(),
-        aircraft: null,
-      };
-      context.commit('setCheck', check);
     }
   },
   getAircraftList(context) {

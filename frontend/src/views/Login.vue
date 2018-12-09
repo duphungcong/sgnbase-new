@@ -23,7 +23,7 @@
             </label>
           </div>
 
-          <button class="button is-info is-fullwidth" @click="onLogin">Login</button>
+          <button class="button is-primary is-fullwidth" @click="onLogin">Login</button>
 
       </div>
 

@@ -18,21 +18,21 @@
             {{ props.row.aircraft.register }}
         </b-table-column>
 
-        <b-table-column field="name" label="Check" width="400">
+        <b-table-column field="name" label="Check" width="300">
             {{ props.row.name }}
         </b-table-column>
 
         <b-table-column field="start_date" label="Start Date" width="200">
-            {{ props.row.start_date }}
+            {{ props.row.start_date.toLocaleString() }}
         </b-table-column>
 
         <b-table-column field="finish_date" label="Finish Date" width="200">
             {{ props.row.start_date }}
         </b-table-column>
 
-        <b-table-column label="Actions" centered>
+        <b-table-column label="Actions" width="200" centered>
           <button class="button is-small is-light" @click="editCheck(props.row.id)">
-            <b-icon pack="fas" icon="pencil-alt" size="is-small"></b-icon>
+            <b-icon pack="fas" icon="pencil-alt"></b-icon>
           </button>
         </b-table-column>
     </template>
@@ -71,14 +71,13 @@ export default {
       });
     },
     newCheck() {
-      this.$router.push({ name: 'check', params: { id: 1 } });
+      this.$router.push({ name: 'check' });
     },
     editCheck(id) {
       this.$router.push({ name: 'check', params: { id } });
     },
   },
   created() {
-    console.log('load home page');
     this.getChecks();
   },
 };

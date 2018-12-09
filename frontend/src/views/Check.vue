@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-6">
+  <div class="column is-4">
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
@@ -52,9 +52,19 @@
     </div>
 
     <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-primary" @click="submit">Submit</button>
+      <template v-if="checkId">
+        <div class="control">
+          <button class="button is-primary" @click="updateCheck">Save changes</button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" @click="deleteCheck">Delete check</button>
+        </div>
+      </template>
+
+      <div class="control" v-else>
+        <button class="button is-primary" @click="createCheck">Create check</button>
       </div>
+
       <div class="control">
         <button class="button is-text" @click="back">Cancel</button>
       </div>
@@ -71,22 +81,21 @@ export default {
   data() {
     return {
       checkId: null,
-      // check: {
-      //   name: 'test',
-      //   start_date: new Date(),
-      //   finish_date: new Date(),
-      //   aircraft: null,
-      // },
     };
   },
   computed: {
     ...mapState('work', ['aircraftList', 'check']),
   },
   methods: {
-    submit() {
-      console.log('submit');
-      console.log('new check', this.check);
+    createCheck() {
+      console.log('create');
       this.$store.dispatch('work/createCheck', this.check);
+    },
+    updateCheck() {
+      console.log('update');
+    },
+    deleteCheck() {
+      console.log('delete');
     },
     back() {
       this.$router.push('/');
@@ -107,6 +116,7 @@ export default {
     this.getCheck();
     this.getAircraftList();
   },
+  mounted() {},
 };
 </script>
 
