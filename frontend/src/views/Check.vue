@@ -89,13 +89,22 @@ export default {
   methods: {
     createCheck() {
       console.log('create');
-      this.$store.dispatch('work/createCheck', this.check);
+      this.$store.dispatch('work/createCheck', {
+        check: this.check,
+      });
     },
     updateCheck() {
       console.log('update');
+      this.$store.dispatch('work/updateCheck', {
+        id: this.checkId,
+        check: this.check,
+      });
     },
     deleteCheck() {
       console.log('delete');
+      this.$store.dispatch('work/deleteCheck', {
+        id: this.checkId,
+      });
     },
     back() {
       this.$router.push('/');

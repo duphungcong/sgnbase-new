@@ -31,7 +31,7 @@
         </b-table-column>
 
         <b-table-column label="Actions" width="200" centered>
-          <button class="button is-small is-light" @click="editCheck(props.row.id)">
+          <button class="button is-small" @click="editCheck(props.row.id)">
             <b-icon pack="fas" icon="pencil-alt"></b-icon>
           </button>
         </b-table-column>

@@ -1,25 +1,13 @@
 import http from '@/helpers/http';
 
 const endpoints = {
-  getChecks: 'checks/',
-  // method: GET
-  // params:
-  // page (string)
+  checksUrl: 'checks/',
   getAircraftList: 'aircraft/',
-  // method: GET
-  // params: {}
-  createCheck: 'checks/',
-  // method: POST
-  // body:
-  // name (string)
-  // start_date (string)
-  // finish_date (string)
-  // aircraft (Aircraft.object)
 };
 
 export default {
   getChecks(payload, cb) {
-    http.getData(endpoints.getChecks, {
+    http.getData(endpoints.checksUrl, {
       params: payload,
     })
       .then((res) => {
@@ -31,7 +19,7 @@ export default {
   },
   getCheck(payload, cb) {
     const { id } = payload;
-    const endpoint = `${endpoints.getChecks}${id}/`;
+    const endpoint = `${endpoints.checksUrl}${id}/`;
     http.getData(endpoint, {})
       .then((res) => {
         console.log('res', res.data);
@@ -50,8 +38,28 @@ export default {
       });
   },
   createCheck(payload, cb) {
-    // console.log('create check - payload', payload);
-    http.postData(endpoints.createCheck, payload)
+    const { check } = payload;
+    http.postData(endpoints.checksUrl, check)
+      .then((res) => {
+        cb(true, null, res.data);
+      }, (err) => {
+        cb(false, err.response.data, null);
+      });
+  },
+  updateCheck(payload, cb) {
+    const { id, check } = payload;
+    const endpoint = `${endpoints.checksUrl}${id}/`;
+    http.putData(endpoint, check)
+      .then((res) => {
+        cb(true, null, res.data);
+      }, (err) => {
+        cb(false, err.response.data, null);
+      });
+  },
+  deleteCheck(payload, cb) {
+    const { id } = payload;
+    const endpoint = `${endpoints.checksUrl}${id}/`;
+    http.deleteData(endpoint)
       .then((res) => {
         cb(true, null, res.data);
       }, (err) => {

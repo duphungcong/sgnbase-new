@@ -46,6 +46,7 @@ const actions = {
       workApi.getCheck(payload, (success, error, data) => {
         if (success) {
           check = {
+            id: data.id,
             name: data.name,
             start_date: new Date(data.start_date),
             finish_date: new Date(data.finish_date),
@@ -70,8 +71,25 @@ const actions = {
   createCheck(context, payload) {
     workApi.createCheck(payload, (success, error, data) => {
       if (success) {
-        console.log('create new check', data);
-
+        console.log('create new check success', data);
+      } else {
+        console.log('error', error);
+      }
+    });
+  },
+  updateCheck(context, payload) {
+    workApi.updateCheck(payload, (success, error, data) => {
+      if (success) {
+        console.log('update check success', data);
+      } else {
+        console.log('error', error);
+      }
+    });
+  },
+  deleteCheck(context, payload) {
+    workApi.deleteCheck(payload, (success, error, data) => {
+      if (success) {
+        console.log('delete check success', data);
       } else {
         console.log('error', error);
       }
