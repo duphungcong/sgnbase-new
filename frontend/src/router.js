@@ -49,5 +49,11 @@ export default new Router({
       component: () => import('./views/ZoneDivision.vue'),
       beforeEnter: staff,
     },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('./views/Dashboard.vue'),
+      beforeEnter: staff,
+    },
   ],
 });

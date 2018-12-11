@@ -1,6 +1,6 @@
 <template>
   <div class="container is-fluid">
-    <nav-bar v-if="loggedIn"></nav-bar>
+    <nav-bar v-if="loggedIn" :followed="followed"></nav-bar>
     <router-view></router-view>
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {
     loggedIn() {
       return this.$store.getters['auth/loggedIn'];
     },
+    followed() {
+      return this.$store.getters.followed;
+    },
   },
   watch: {
     loggedIn(value) {
@@ -23,6 +26,13 @@ export default {
         this.$router.push({ name: 'login' });
       } else {
         this.$router.push({ name: 'home' });
+      }
+    },
+    followed(value) {
+      if (!value) {
+        this.$router.push({ name: 'home' });
+      } else {
+        this.$router.push({ name: 'dashboard' });
       }
     },
   },

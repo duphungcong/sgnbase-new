@@ -78,7 +78,9 @@ export default {
       this.$router.push({ name: 'check', params: { id } });
     },
     followCheck(id) {
-      this.$router.push({ name: 'zoneDivision', params: { id } });
+      this.$store.dispatch('followCheck', {
+        id
+      });
     },
   },
   created() {

@@ -22,7 +22,9 @@ const mutations = {
 };
 
 const actions = {
-
+  followCheck(context, payload) {
+    context.commit('setCheckId', payload.id);
+  },
 };
 
 const getters = {
