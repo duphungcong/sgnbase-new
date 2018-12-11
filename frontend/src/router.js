@@ -21,6 +21,24 @@ const staff = (to, from, next) => {
   next('/login');
 };
 
+const follow = (to, from, next) => {
+  if (store.getters.followed) {
+    staff(to, from, next);
+    next();
+    return;
+  }
+  next('/home');
+};
+
+const noFollow = (to, from, next) => {
+  if (!store.getters.followed) {
+    staff(to, from, next);
+    next();
+    return;
+  }
+  next('/dashboard');
+};
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -29,7 +47,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
-      beforeEnter: staff,
+      beforeEnter: noFollow,
     },
     {
       path: '/login',
@@ -41,19 +59,19 @@ export default new Router({
       path: '/check',
       name: 'check',
       component: () => import('./views/Check.vue'),
-      beforeEnter: staff,
+      beforeEnter: noFollow,
     },
     {
       path: '/zonedivison',
       name: 'zoneDivision',
       component: () => import('./views/ZoneDivision.vue'),
-      beforeEnter: staff,
+      beforeEnter: follow,
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
-      beforeEnter: staff,
+      beforeEnter: follow,
     },
   ],
 });

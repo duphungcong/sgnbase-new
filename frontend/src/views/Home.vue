@@ -79,7 +79,7 @@ export default {
     },
     followCheck(id) {
       this.$store.dispatch('followCheck', {
-        id
+        id,
       });
     },
   },

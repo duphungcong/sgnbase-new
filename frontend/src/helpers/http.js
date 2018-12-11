@@ -16,7 +16,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   /* global window Store */
   const { token } = Store.state.auth;
-  console.log('token in request', token);
+  // console.log('token in request', token);
 
   if (token) {
     config.headers.common.Authorization = `JWT ${token}`; // One SPACE between JWT and token

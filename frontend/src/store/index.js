@@ -8,13 +8,13 @@ import check from './modules/check';
 Vue.use(Vuex);
 
 const state = {
-  loading: false,
+  isLoading: false,
   checkId: null,
 };
 
 const mutations = {
   setLoading(state, payload) {
-    state.loading = payload;
+    state.isLoading = payload;
   },
   setCheckId(state, payload) {
     state.checkId = payload;
@@ -24,6 +24,9 @@ const mutations = {
 const actions = {
   followCheck(context, payload) {
     context.commit('setCheckId', payload.id);
+  },
+  unfollow(context) {
+    context.commit('setCheckId', null);
   },
 };
 

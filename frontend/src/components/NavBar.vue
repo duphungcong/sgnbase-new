@@ -15,35 +15,32 @@
     </div>
 
     <div class="navbar-menu" v-bind:class="{ 'is-active': activator }">
-      <div class="navbar-start">
-        <a class="navbar-item" href="/">
-          Checks
-        </a>
+      <div class="navbar-start" v-if="followed">
+        <a class="navbar-item" href="/dashboard">Dashboard</a>
+        <a class="navbar-item" href="/zonedivision">Zone Division</a>
+        <a class="navbar-item" href="/">NRC</a>
+        <a class="navbar-item" href="/">RQF</a>
+        <a class="navbar-item" href="/">TAR</a>
+        <a class="navbar-item" href="/">Barcode</a>
+      </div>
 
-        <a class="navbar-item">
-          Documentation
-        </a>
+      <div class="navbar-start" v-else>
+        <a class="navbar-item" href="/">Checks</a>
+
+        <a class="navbar-item">Tools</a>
+        <a class="navbar-item">Spares</a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
+          <a class="navbar-link">More</a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
+            <a class="navbar-item">AMS</a>
+            <a class="navbar-item">Task</a>
+            <a class="navbar-item">EO</a>
             <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
+            <a class="navbar-item">Report an issue</a>
           </div>
+
         </div>
       </div>
 
@@ -79,7 +76,7 @@ export default {
       this.$store.dispatch('auth/deleteToken');
     },
     unfollow() {
-      console.log('unfollow');
+      this.$store.dispatch('unfollow');
     },
     activeMenu() {
       this.activator = !this.activator;

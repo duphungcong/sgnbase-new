@@ -2,17 +2,20 @@
   <div class="container is-fluid">
     <nav-bar v-if="loggedIn" :followed="followed"></nav-bar>
     <router-view></router-view>
+    <b-loading :active.sync="isLoading" :can-cancel="true"></b-loading>
   </div>
 </template>
 
 <script>
 
 import NavBar from '@/components/NavBar.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
   components: { NavBar },
   computed: {
+    ...mapState(['isLoading']),
     loggedIn() {
       return this.$store.getters['auth/loggedIn'];
     },
