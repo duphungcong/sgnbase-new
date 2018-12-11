@@ -31,9 +31,6 @@ export default new Router({
       component: Home,
       beforeEnter: staff,
     },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     {
       path: '/login',
       name: 'login',
@@ -44,6 +41,12 @@ export default new Router({
       path: '/check',
       name: 'check',
       component: () => import('./views/Check.vue'),
+      beforeEnter: staff,
+    },
+    {
+      path: '/zonedivison',
+      name: 'zoneDivision',
+      component: () => import('./views/ZoneDivision.vue'),
       beforeEnter: staff,
     },
   ],

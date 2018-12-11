@@ -30,10 +30,11 @@
             {{ props.row.start_date }}
         </b-table-column>
 
-        <b-table-column label="Actions" width="200" centered>
-          <button class="button is-small" @click="editCheck(props.row.id)">
-            <b-icon pack="fas" icon="pencil-alt"></b-icon>
-          </button>
+        <b-table-column label="Actions" width="150">
+          <div class="buttons">
+            <span class="button" @click="editCheck(props.row.id)">Edit</span>
+            <span class="button" @click="followCheck(props.row.id)">Follow</span>
+          </div>
         </b-table-column>
     </template>
 
@@ -58,7 +59,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('work', ['checks', 'numberOfChecks']),
+    ...mapState('check', ['checks', 'numberOfChecks']),
   },
   methods: {
     onPageChange(page) {
@@ -66,7 +67,7 @@ export default {
       this.getChecks();
     },
     getChecks() {
-      this.$store.dispatch('work/getChecks', {
+      this.$store.dispatch('check/getChecks', {
         page: this.page,
       });
     },
@@ -75,6 +76,9 @@ export default {
     },
     editCheck(id) {
       this.$router.push({ name: 'check', params: { id } });
+    },
+    followCheck(id) {
+      this.$router.push({ name: 'zoneDivision', params: { id } });
     },
   },
   created() {

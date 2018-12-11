@@ -1,4 +1,4 @@
-import workApi from '@/api/work';
+import checkApi from '@/api/check';
 
 const state = {
   checks: [],
@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   getChecks(context, payload) {
-    workApi.getChecks(payload, (success, error, data) => {
+    checkApi.getChecks(payload, (success, error, data) => {
       if (success) {
         context.commit('setChecks', data.results);
         context.commit('setNumberOfChecks', data.count);
@@ -43,7 +43,7 @@ const actions = {
     context.commit('setCheck', check);
     if (payload.id) {
       // console.log('get check - id:', payload.id);
-      workApi.getCheck(payload, (success, error, data) => {
+      checkApi.getCheck(payload, (success, error, data) => {
         if (success) {
           check = {
             id: data.id,
@@ -60,7 +60,7 @@ const actions = {
     }
   },
   getAircraftList(context) {
-    workApi.getAircraftList((success, error, data) => {
+    checkApi.getAircraftList((success, error, data) => {
       if (success) {
         context.commit('setAircraftList', data);
       } else {
@@ -69,7 +69,7 @@ const actions = {
     });
   },
   createCheck(context, payload) {
-    workApi.createCheck(payload, (success, error, data) => {
+    checkApi.createCheck(payload, (success, error, data) => {
       if (success) {
         console.log('create new check success', data);
       } else {
@@ -78,7 +78,7 @@ const actions = {
     });
   },
   updateCheck(context, payload) {
-    workApi.updateCheck(payload, (success, error, data) => {
+    checkApi.updateCheck(payload, (success, error, data) => {
       if (success) {
         console.log('update check success', data);
       } else {
@@ -87,7 +87,7 @@ const actions = {
     });
   },
   deleteCheck(context, payload) {
-    workApi.deleteCheck(payload, (success, error, data) => {
+    checkApi.deleteCheck(payload, (success, error, data) => {
       if (success) {
         console.log('delete check success', data);
       } else {

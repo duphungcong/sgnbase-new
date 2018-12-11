@@ -84,25 +84,25 @@ export default {
     };
   },
   computed: {
-    ...mapState('work', ['aircraftList', 'check']),
+    ...mapState('check', ['aircraftList', 'check']),
   },
   methods: {
     createCheck() {
       console.log('create');
-      this.$store.dispatch('work/createCheck', {
+      this.$store.dispatch('check/createCheck', {
         check: this.check,
       });
     },
     updateCheck() {
       console.log('update');
-      this.$store.dispatch('work/updateCheck', {
+      this.$store.dispatch('check/updateCheck', {
         id: this.checkId,
         check: this.check,
       });
     },
     deleteCheck() {
       console.log('delete');
-      this.$store.dispatch('work/deleteCheck', {
+      this.$store.dispatch('check/deleteCheck', {
         id: this.checkId,
       });
     },
@@ -110,10 +110,10 @@ export default {
       this.$router.push('/');
     },
     getAircraftList() {
-      this.$store.dispatch('work/getAircraftList');
+      this.$store.dispatch('check/getAircraftList');
     },
     getCheck() {
-      this.$store.dispatch('work/getCheck', {
+      this.$store.dispatch('check/getCheck', {
         id: this.checkId,
       });
     },

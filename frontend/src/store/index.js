@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 import auth from './modules/auth';
-import work from './modules/work';
+import check from './modules/check';
 
 Vue.use(Vuex);
 
@@ -37,6 +37,6 @@ export default new Vuex.Store({
   getters,
   modules: {
     auth,
-    work,
+    check,
   },
 });
