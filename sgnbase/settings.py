@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'ams.apps.AmsConfig',
     'work.apps.WorkConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 
 
 REST_FRAMEWORK = {
