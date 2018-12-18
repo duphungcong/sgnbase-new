@@ -63,7 +63,7 @@ class Spare(models.Model):
 class Task(models.Model):
     number = models.CharField(max_length=20)
     zone = models.CharField(max_length=10)
-    code = models.CharField(max_length=3)
+    code = models.CharField(max_length=10)
     title = models.CharField(max_length=200)
     ams_mh = models.FloatField
     actual_mh = models.FloatField
@@ -71,8 +71,8 @@ class Task(models.Model):
     hour = models.FloatField
 
     areas = models.ManyToManyField(Area)
-    tools = models.ManyToManyField(Tool)
-    spare = models.ManyToManyField(Spare)
+    tools = models.ManyToManyField(Tool, blank=True)
+    spares = models.ManyToManyField(Spare, blank=True)
 
     def __str__(self):
         return self.number
