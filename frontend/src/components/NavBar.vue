@@ -34,7 +34,6 @@
           <a class="navbar-link">More</a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="/ams">AMS</a>
             <a class="navbar-item">Task</a>
             <a class="navbar-item">EO</a>
             <hr class="navbar-divider">

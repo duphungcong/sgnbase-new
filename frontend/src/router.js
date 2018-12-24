@@ -62,7 +62,7 @@ export default new Router({
       beforeEnter: noFollow,
     },
     {
-      path: '/zonedivison',
+      path: '/zonedivision',
       name: 'zoneDivision',
       component: () => import('./views/ZoneDivision.vue'),
       beforeEnter: follow,
@@ -72,12 +72,6 @@ export default new Router({
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
       beforeEnter: follow,
-    },
-    {
-      path: '/ams',
-      name: 'ams',
-      component: () => import('./views/Ams.vue'),
-      beforeEnter: noFollow,
     },
   ],
 });

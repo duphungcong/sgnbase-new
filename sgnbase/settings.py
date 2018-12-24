@@ -155,6 +155,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
     '192.168.1.25:8080',
+    '192.168.1.17:8080',
 )
 CSRF_TRUSTED_ORIGINS = (
     'localhost:8080',

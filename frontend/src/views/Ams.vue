@@ -4,7 +4,7 @@
       <b-upload v-model="file">
         <a class="button is-primary">
           <b-icon icon="upload"></b-icon>
-          <span>Click to upload</span>
+          <span>Upload workpack</span>
         </a>
       </b-upload>
       <span class="file-name" v-if="file">
