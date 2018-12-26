@@ -15,22 +15,51 @@
 </template>
 
 <script>
+
+import XLSX from 'xlsx';
+import { mapState } from 'vuex';
+
 export default {
   name: 'ZoneDivision',
   data() {
     return {
       file: null,
+      workpack: [],
     };
+  },
+  computed: {
+    ...mapState(['checkId']),
   },
   watch: {
     file(val) {
       this.readFile(val);
-    }
+    },
   },
   methods: {
     readFile(file) {
-      console.log(file.name)
-    }
+      console.log(file.name);
+      let workpack;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        /* Parse data */
+        const bstr = e.target.result;
+        const wb = XLSX.read(bstr, { type: 'binary' });
+        /* Get first worksheet */
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
+        /* Convert array of arrays */
+        const data = XLSX.utils.sheet_to_json(ws, { header: ['wpItem', 'name', 'zone', 'type', 'title'] });
+        /* Update state */
+        data.shift();
+        workpack = data;
+        // this.cols = makeCols(ws['!ref'])
+        return workpack;
+      };
+      reader.readAsBinaryString(file);
+    },
+    scanWp(workpack) {
+      console.log('scan wp');
+    },
   },
 };
 </script>
