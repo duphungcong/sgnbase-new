@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 import auth from './modules/auth';
 import check from './modules/check';
+import nrc from './modules/nrc';
 
 Vue.use(Vuex);
 
@@ -43,5 +44,6 @@ export default new Vuex.Store({
   modules: {
     auth,
     check,
+    nrc,
   },
 });

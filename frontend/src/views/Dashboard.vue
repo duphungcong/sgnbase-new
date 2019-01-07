@@ -1,6 +1,6 @@
 <template>
   <div class="column">
-    <b-collapse class="card">
+    <b-collapse class="card" :open="false">
       <div slot="trigger" slot-scope="props" class="card-header">
         <p class="card-header-title">BAO CAO TIEN DO DINH KY</p>
         <a class="card-header-icon">
@@ -66,5 +66,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .card-content {
+    padding: 0.5em;
+  }
 </style>

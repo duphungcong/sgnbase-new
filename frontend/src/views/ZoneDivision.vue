@@ -32,13 +32,12 @@ export default {
   },
   watch: {
     file(val) {
-      this.readFile(val);
+      this.workpack = this.readFile(val);
     },
   },
   methods: {
     readFile(file) {
       console.log(file.name);
-      let workpack;
       const reader = new FileReader();
       reader.onload = (e) => {
         /* Parse data */
@@ -51,9 +50,8 @@ export default {
         const data = XLSX.utils.sheet_to_json(ws, { header: ['wpItem', 'name', 'zone', 'type', 'title'] });
         /* Update state */
         data.shift();
-        workpack = data;
         // this.cols = makeCols(ws['!ref'])
-        return workpack;
+        return data;
       };
       reader.readAsBinaryString(file);
     },

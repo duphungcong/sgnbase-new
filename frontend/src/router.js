@@ -73,5 +73,11 @@ export default new Router({
       component: () => import('./views/Dashboard.vue'),
       beforeEnter: follow,
     },
+    {
+      path: '/nrcs',
+      name: 'nrcList',
+      component: () => import('./views/NrcList.vue'),
+      beforeEnter: follow,
+    },
   ],
 });

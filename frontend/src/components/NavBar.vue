@@ -18,7 +18,7 @@
       <div class="navbar-start" v-if="followed">
         <a class="navbar-item" href="/dashboard">Dashboard</a>
         <a class="navbar-item" href="/zonedivision">Zone Division</a>
-        <a class="navbar-item" href="/">NRC</a>
+        <a class="navbar-item" href="/nrcs">NRC</a>
         <a class="navbar-item" href="/">RQF</a>
         <a class="navbar-item" href="/">TAR</a>
         <a class="navbar-item" href="/">Barcode</a>
