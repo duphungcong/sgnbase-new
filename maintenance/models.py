@@ -1,5 +1,5 @@
 from django.db import models
-from ams.models import Aircraft
+from facility.models import Aircraft
 
 
 # Create your models here.

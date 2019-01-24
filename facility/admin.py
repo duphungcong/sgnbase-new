@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Aircraft, Area, Note, Task, Tool, Spare
+from .models import Aircraft, Team, Note, Task, Tool, Spare
 
 
 class AircraftAdmin(admin.ModelAdmin):
@@ -9,9 +9,9 @@ class AircraftAdmin(admin.ModelAdmin):
     ordering = ('type', 'register',)
 
 
-class AreaAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'main_area')
-    ordering = ('main_area',)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'main_team')
+    ordering = ('main_team',)
 
 
 class NoteAdmin(admin.ModelAdmin):
@@ -31,12 +31,12 @@ class TaskResource(resources.ModelResource):
 class TaskAdmin(ImportExportModelAdmin):
     resource_class = TaskResource
     list_display = ('number', 'zone', 'code', 'title')
-    filter_horizontal = ('areas', 'tools', 'spares')
+    filter_horizontal = ('teams', 'tools', 'spares')
     fieldsets = (
         (None, {
-            'fields': ('number', 'zone', 'code', 'title', 'areas')
+            'fields': ('number', 'zone', 'code', 'title', 'teams')
         }),
-        ('Tools and Preloads', {
+        ('Tools and Spares', {
             'classes': ('collapse',),
             'fields': ('tools', 'spares'),
         })
@@ -45,7 +45,7 @@ class TaskAdmin(ImportExportModelAdmin):
 
 # Register your models here.
 admin.site.register(Aircraft, AircraftAdmin)
-admin.site.register(Area, AreaAdmin)
+admin.site.register(Team, TeamAdmin)
 admin.site.register(Note, NoteAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Tool)

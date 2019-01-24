@@ -5,7 +5,7 @@ import router from './router';
 import store from './store/index';
 import http from './helpers/http';
 
-import 'buefy/dist/buefy.css';
+// import 'buefy/dist/buefy.css';
 
 Vue.use(Buefy, {
   defaultIconPack: 'fas',

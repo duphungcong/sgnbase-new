@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Check
-from ams.serializers import AircraftSerializer
+from facility.serializers import AircraftSerializer
 
 
 class CheckSerializer(serializers.ModelSerializer):

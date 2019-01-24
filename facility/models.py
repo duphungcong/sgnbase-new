@@ -24,15 +24,15 @@ class Aircraft(models.Model):
         return self.register
 
 
-class Area(models.Model):
+class Team(models.Model):
     name = models.CharField(max_length=20)
-    main_area = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='areas')
+    main_team = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='sub_teams')
 
     def __str__(self):
-        if self.main_area is None:
+        if self.main_team is None:
             return self.name
         else:
-            return '%s %s' % (self.main_area, self.name)
+            return '%s %s' % (self.main_team, self.name)
 
 
 class Tool(models.Model):
@@ -70,7 +70,7 @@ class Task(models.Model):
     men = models.IntegerField
     hour = models.FloatField
 
-    areas = models.ManyToManyField(Area)
+    teams = models.ManyToManyField(Team)
     tools = models.ManyToManyField(Tool, blank=True)
     spares = models.ManyToManyField(Spare, blank=True)
 

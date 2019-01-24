@@ -46,5 +46,12 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
+  @import "~bulma/sass/utilities/_all";
+
+  $primary: hsl(171, 100%, 41%) !default
+
+  // Import Bulma and Buefy styles
+  @import "~bulma";
+  @import "~buefy/src/scss/buefy";
 </style>
