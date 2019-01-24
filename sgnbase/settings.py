@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'facility.apps.AmsConfig',
-    'maintenance.apps.WorkConfig',
+    'facility.apps.FacilityConfig',
+    'maintenance.apps.MaintenanceConfig',
     'import_export',
 ]
 
